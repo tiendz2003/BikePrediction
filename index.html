@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dự đoán thuê xe đạp</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/file.css') }}">
+</head>
+
+<body style="background: #000;">
+<div class="login">
+  <h1>Dự đoán thuê xe đạp</h1>
+
+  <form action="{{ url_for('predict') }}" method="post">
+
+    <label for="season">Mùa (1-4):</label>
+    <input type="number" name="season" id="season" placeholder="Nhập mùa" min="1" max="4" required>
+
+    <label for="holiday">Ngày nghỉ (0/1):</label>
+    <input type="number" name="holiday" id="holiday" placeholder="Nhập ngày nghỉ" min="0" max="1" required>
+
+    <label for="workingday">Ngày làm việc (0/1):</label>
+    <input type="number" name="workingday" id="workingday" placeholder="Nhập ngày làm việc" min="0" max="1" required>
+
+    <label for="weather">Thời tiết (1-4):</label>
+    <input type="number" name="weather" id="weather" placeholder="Nhập thời tiết" min="1" max="4" required>
+
+    <label for="temp">Nhiệt độ (C):</label>
+    <input type="number" name="temp" id="temp" placeholder="Nhập nhiệt độ" required>
+
+    <label for="atemp">Nhiệt độ cảm nhận (C):</label>
+    <input type="number" name="atemp" id="atemp" placeholder="Nhập nhiệt độ cảm nhận" required>
+
+    <label for="humidity">Độ ẩm (%):</label>
+    <input type="number" name="humidity" id="humidity" placeholder="Nhập độ ẩm" min="0" max="100" required>
+
+    <label for="casual">Lượt thuê không đăng ký:</label>
+    <input type="number" name="casual" id="casual" placeholder="Nhập số lượt" required>
+
+    <label for="registered">Lượt thuê đã đăng ký:</label>
+    <input type="number" name="registered" id="registered" placeholder="Nhập số lượt" required>
+
+    <button type="submit" class="btn btn-primary btn-block btn-large">Dự đoán</button>
+
+  </form>
+body {
+      height: 500px; /* Set the desired fixed height */
+      overflow-y: scroll; /* Add a vertical scrollbar */
+    }
+  <br>
+  <br>
+  <div id="prediction">{{ prediction_text }}</div>
+</div>
+
+</body>
+</html>
